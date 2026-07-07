@@ -4,6 +4,49 @@ This is a lightweight personal-project backlog derived from [`docs/PRD_FOCUSED_V
 
 The backlog has one required evidence gate. After PROJ-007, follow either the one-operation path or the zero-operation path. Conditional tickets stay `Blocked` until that decision. Zero operations is a valid v1 outcome; unsupported protocol behavior must never be implemented to make the positive path appear complete.
 
+## Ticket completion and Git workflow
+
+Work is sequential in the shared checkout and uses one active write branch. For each activated ticket:
+
+1. The project manager confirms that every dependency is merged into current `master`, the ticket is unblocked, and its acceptance criteria still match the selected evidence-gate path.
+2. After confirming no write-capable agent is active, `github` updates local `master` and creates `codex/proj-###-short-slug` from that exact commit. No other agent creates or switches branches.
+3. `github` records the base branch, base commit, ticket branch, and starting head, then communicates that context to every agent assigned to the ticket.
+4. Agents complete only that ticket. Blocked work is documented without speculative implementation; no commit or PR represents a blocked ticket as complete.
+5. After the project manager confirms all acceptance criteria and smallest relevant checks pass, `github` commits only the ticket's accepted work, pushes the branch, opens a PR to `master`, records base/head and the PR URL, and communicates the state.
+6. The next ticket branch does not begin until the current ticket PR and all dependency PRs have explicit human merge approval and are merged. Once approved, `github` may merge the PR, update local `master`, and delete the ticket branch. Releases, force-pushes, history rewrites, and destructive remote changes still require separate explicit human approval.
+
+Documentation-only tickets use the same branch, review, and merge gate. Conditional tickets on the unselected PROJ-007 path are marked not applicable in the gate record and receive no branch. A ticket blocked after branch creation keeps its branch and PR unmerged; `github` records the blocker and resumes that branch only after the blocker clears. Closely coupled tickets may share one branch only when the project manager records the reason before branch creation, all included ticket IDs, their combined acceptance checks, and a single human-approved PR; no such grouping is planned below.
+
+## Branch and Merge Plan
+
+| Ticket | Branch created only after | Branch name | Merge gate / conditional handling |
+|---|---|---|---|
+| PROJ-001 | Current `master` | `codex/proj-001-evidence-ledger` | Merge after PROJ-001 acceptance and checks pass. |
+| PROJ-002 | PROJ-001 merged | `codex/proj-002-admission-rules` | Documentation-only; merge after checklist/link review passes. |
+| PROJ-003 | PROJ-001 and PROJ-002 merged | `codex/proj-003-capture-procedure` | Documentation-only; merge after safety/approval review passes. |
+| PROJ-004 | PROJ-001–PROJ-003 merged and hardware approval granted | `codex/proj-004-advertisement-evidence` | If blocked, retain branch unmerged; merge only recorded positive, negative, or inconclusive evidence. |
+| PROJ-005 | PROJ-004 merged and action approval granted | `codex/proj-005-gatt-inventory` | If blocked, retain branch unmerged; merge only evidence-backed inventory/results. |
+| PROJ-006 | PROJ-005 merged and per-action approval granted | `codex/proj-006-candidate-experiment` | Merge reproduced or documented negative/inconclusive result; never merge unsupported behavior. |
+| PROJ-007 | PROJ-006 merged | `codex/proj-007-evidence-gate` | Merge only after PM selects exactly one path and marks the other path not applicable. |
+| PROJ-008 | PROJ-002 and PROJ-007 merged; one-operation path selected | `codex/proj-008-generated-fixture` | No branch on zero-operation path; merge after provenance/privacy review. |
+| PROJ-009 | PROJ-007 merged; one-operation path selected | `codex/proj-009-dotnet-structure` | No branch on zero-operation path; merge after restore/build/test checks pass. |
+| PROJ-010 | PROJ-008 and PROJ-009 merged | `codex/proj-010-operation-codec` | No branch on zero-operation path; merge after deterministic and rejection tests pass. |
+| PROJ-011 | PROJ-007 and PROJ-008 merged; one-operation path selected | `codex/proj-011-corebluetooth-spike` | No branch on zero-operation path; merge success, limitation, or failure evidence after focused check. |
+| PROJ-012 | PROJ-009 and PROJ-011 merged | `codex/proj-012-native-boundary` | No branch on zero-operation path; merge after boundary proof and failure propagation checks pass. |
+| PROJ-013 | PROJ-011 and PROJ-012 merged | `codex/proj-013-gatt-test-double` | No branch on zero-operation path; merge after native checks and cleanup validation pass. |
+| PROJ-014 | PROJ-010, PROJ-012, and PROJ-013 merged | `codex/proj-014-transport-seam` | No branch on zero-operation path; merge after focused happy/failure-path tests pass. |
+| PROJ-015 | PROJ-010 and PROJ-014 merged | `codex/proj-015-public-operation` | No branch on zero-operation path; merge after API-surface and public-contract tests pass. |
+| PROJ-016 | PROJ-013–PROJ-015 merged | `codex/proj-016-hardware-free-check` | No branch on zero-operation path; merge after repeatable end-to-end check passes. |
+| PROJ-017 | PROJ-015 and PROJ-016 merged | `codex/proj-017-operation-example` | Documentation/example ticket; no branch on zero-operation path; merge after the documented example passes. |
+| PROJ-018 | PROJ-007 merged; zero-operation path selected | `codex/proj-018-zero-operation-check` | No branch on one-operation path; merge after the validator proves zero supported operations. |
+| PROJ-019 | PROJ-018 merged | `codex/proj-019-zero-operation-handoff` | Documentation-only; no branch on one-operation path; merge after handoff/link checks pass. |
+| PROJ-020 | PROJ-016 merged on one-operation path, or PROJ-018 merged on zero-operation path | `codex/proj-020-default-validation` | Merge after the selected-path default command passes without physical BLE interaction. |
+| PROJ-021 | PROJ-003, PROJ-007, and PROJ-020 merged | `codex/proj-021-hardware-check-isolation` | Merge either isolated opt-in check or documented decision that none ships; add no speculative check. |
+| PROJ-022 | PROJ-007 merged; plus PROJ-011–PROJ-012 merged on one-operation path or negative boundary recorded on zero-operation path | `codex/proj-022-resolve-adr` | Documentation-only; merge after ADR is accepted or superseded with evidence links. |
+| PROJ-023 | PROJ-017 merged on one-operation path, or PROJ-019 merged on zero-operation path; PROJ-020–PROJ-022 merged | `codex/proj-023-contributor-docs` | Documentation-only; merge after commands, links, terminology, and path-specific claims validate. |
+| PROJ-024 | PROJ-020–PROJ-023 and every activated path ticket merged | `codex/proj-024-final-audit` | Merge only when traceability/privacy/scope audit passes; failures block merge. |
+| PROJ-025 | PROJ-024 merged | `codex/proj-025-acceptance-handoff` | Merge only after reviewer findings resolve and PM accepts the complete handoff. |
+
 ## Milestone 1: Evidence foundation
 
 ### PROJ-001 — Establish the versioned evidence ledger and artifact layout
@@ -562,7 +605,7 @@ Every stated focused-v1 goal maps to at least one ticket. Open questions are rep
 
 ## Recommended Execution Order
 
-Work sequentially as a solo developer:
+Work sequentially as a solo developer. Each item starts only after its dependencies and preceding required ticket PRs are human-approved and merged into `master`; `github` then creates the exact branch in the Branch and Merge Plan. Do not begin the next ticket on an unmerged predecessor branch.
 
 1. PROJ-001 — evidence ledger and layout
 2. PROJ-002 — sanitization/provenance rules
@@ -580,7 +623,7 @@ Work sequentially as a solo developer:
 14. PROJ-024 — final traceability/privacy/scope audit
 15. PROJ-025 — code review and project-manager acceptance
 
-Do not begin the conditional implementation path before PROJ-007. Hardware-dependent work remains blocked until explicit approval for the actual action is granted.
+Do not begin the conditional implementation path before PROJ-007, and do not create branches for the unselected path. Hardware-dependent work remains blocked until explicit approval for the actual action is granted. Any pre-authorized closely coupled exception is one branch and one PR; otherwise every ticket uses its own branch and merge gate.
 
 ## Definition of Complete
 
