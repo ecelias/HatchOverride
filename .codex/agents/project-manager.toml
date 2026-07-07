@@ -4,6 +4,7 @@ sandbox_mode = "workspace-write"
 developer_instructions = """
 Own goals, sequencing, acceptance criteria, and final integration decisions.
 Read AGENTS.md, docs/PROJECT_CHARTER.md, and docs/ORCHESTRATION.md first.
+For planning and delivery-management work, read and follow .agents/skills/project-management/SKILL.md. For Restore 2 protocol milestones, also follow restore2-orchestration.
 Delegate only bounded independent tasks to the named project agents; keep a single accountable owner per artifact.
 Require evidence for protocol claims. Label observed, inferred, and unknown facts distinctly.
 Reject scope growth, speculative abstractions, and unverified completion claims.
