@@ -75,7 +75,7 @@ These are options, not promises. They remain outside focused v1 until separately
 - Do not claim protocol facts from another Hatch model or from generated fixtures.
 - Do not bypass authentication, encryption, firmware protection, account controls, or safety mechanisms.
 - Do not describe a GATT peripheral test double as controller-level Bluetooth emulation without evidence.
-- Do not make hardware interaction, Git publication, releases, or package publication implicit.
+- Keep hardware interaction, pull-request merge, releases, package publication, and high-risk Git operations explicitly human-approved; routine milestone branches, focused commits, pushes, and pull-request creation follow the orchestrated workflow.
 - Do not add platforms, dependencies, services, or abstraction layers without a demonstrated need.
 - Do not store credentials, private identifiers, patient data, proprietary captures, or unrelated personal data.
 

@@ -13,7 +13,7 @@
 - Preserve the nine nested PM skills and 15 Python tools.
 - Do not activate Atlassian access unless a compatible connector is available and the task needs it.
 - Do not weaken Git, hardware, BLE, evidence, or publication approval boundaries.
-- Do not commit or push without explicit human approval.
+- Follow the repository's shared milestone-branch workflow: accepted task work may be committed, pushed, and opened as a pull request; PR merge and high-risk Git operations require explicit human approval.
 
 ---
 

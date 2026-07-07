@@ -116,7 +116,7 @@ An observation becomes eligible for implementation only after reproduction under
 - Work is limited to owned or explicitly authorized devices and accounts.
 - Authentication, encryption, firmware protection, and device safety controls must not be bypassed.
 - Pairing, BLE transmission, and device writes require explicit human approval for that action.
-- Git commits, pushes, pull requests, releases, and package publication require explicit human approval for that action.
+- `project_manager` may authorize milestone branches and focused commits; `github` may push those branches and open pull requests after checks pass. Pull-request merges, releases, package publication, force-pushes, history rewrites, remote changes, and destructive branch deletion require explicit human approval.
 - Hardware tests must be safe by default, isolated from normal tests, and honest about side effects.
 
 ## Quality requirements
@@ -177,7 +177,7 @@ V1 is accepted only when all applicable criteria pass:
 - [ ] Documentation links resolve, terminology is consistent, governing rules are linked rather than redefined, and focused-v1 scope remains distinct from [`END_GOAL.md`](../END_GOAL.md).
 - [ ] The project manager accepts the complete handoff.
 
-Git publication and hardware interaction remain separate human-approved actions and are not implied by product acceptance.
+Product acceptance may trigger the orchestrated commit, push, and pull-request workflow. Pull-request merge, release, package publication, and hardware interaction remain separate human-approved actions.
 
 ## Open questions and evidence gates
 

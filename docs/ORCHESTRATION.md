@@ -6,13 +6,13 @@ Codex loads project agents from `.codex/agents/`. The human asks for delegation 
 
 | Agent | Owns | Must not own |
 |---|---|---|
-| `project_manager` | scope, sequence, acceptance, synthesis | specialist implementation, Git approval |
+| `project_manager` | scope, sequence, acceptance, synthesis, local Git checkpoint authorization | specialist implementation, PR merge approval |
 | `protocol_researcher` | cited public evidence and falsifiable questions | edits or hardware interaction |
 | `embedded_engineer` | BLE evidence, transport, macOS test double | public API product scope |
 | `fullstack_engineer` | .NET API, tooling, tests, later inspector | unsupported protocol claims |
 | `code_reviewer` | correctness and KISS/Ponytail review | edits |
 | `documentation_agent` | intent, usage, decisions, evidence docs | product behavior |
-| `github` | repository state and approved Git operations | deciding when approval exists |
+| `github` | shared branches, focused commits, pushes, PR creation, repository state | PR merges, releases, force/history operations |
 
 ## Default flow
 
@@ -26,9 +26,19 @@ human objective
   -> implementer: fixes + checks
   -> documentation_agent: behavior-aligned docs
   -> project_manager: acceptance
-  -> human approval
-  -> github: commit/push/PR action explicitly approved
+  -> github: focused commit, push, and PR creation
+  -> human approval before PR merge
 ```
+
+## Shared branch coordination
+
+1. `project_manager` defines the milestone, acceptance criteria, and branch slug.
+2. `github` confirms no write-capable agent is active, then creates or switches to `codex/<milestone>`.
+3. `github` records the base branch, base commit, active branch, and head commit in the handoff.
+4. `project_manager` includes that branch context when assigning work to every affected agent.
+5. No agent switches branches directly. Branch changes are serialized through `github` because all agents share one checkout.
+6. After acceptance criteria and checks pass, `github` creates focused commits, pushes the branch, and opens a pull request.
+7. The human explicitly approves any PR merge, release, package publication, force-push, history rewrite, remote change, or destructive branch deletion.
 
 ## Handoff contract
 

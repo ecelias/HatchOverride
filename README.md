@@ -11,4 +11,4 @@ The repository currently contains the Codex team and its operating rules. Produc
 3. Read [the orchestration workflow](docs/ORCHESTRATION.md).
 4. Ask Codex: `Have project_manager plan the next milestone and delegate only the evidence-gathering work that can run independently.`
 
-Per [`AGENTS.md`](AGENTS.md), no agent may commit, push, open a pull request, or publish a package without explicit human approval for that action.
+Per [`AGENTS.md`](AGENTS.md), the project team may create milestone branches, focused commits, pushes, and pull requests. Pull-request merges and high-risk publication operations remain human-approved.

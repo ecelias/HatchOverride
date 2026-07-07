@@ -37,5 +37,5 @@ Resolve specialty paths relative to this file. Run a bundled Python tool from it
 - Use Jira or Confluence only through an available, authorized connector. Treat imported MCP names as reference examples, not proof that a tool is installed.
 - Do not invoke removed command systems, agent definitions, bootstrap configuration, or absent sibling bundles.
 - Do not bulk-load specialties. If a request spans specialties, finish one bounded artifact before loading the next.
-- Preserve explicit human approval gates for Git publication, hardware interaction, pairing, and BLE writes.
+- Use the shared-branch workflow in `docs/ORCHESTRATION.md`: `project_manager` may authorize milestone branches and accepted-task commits; `github` may push and open pull requests. Preserve explicit human approval for PR merge, release, package publication, high-risk Git operations, hardware interaction, pairing, and BLE writes.
 - Unknown protocol behavior is an acceptable result; never convert schedule pressure into unsupported device claims.

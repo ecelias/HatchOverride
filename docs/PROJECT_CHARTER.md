@@ -25,7 +25,7 @@ A protocol-discovery spike with:
 - Do not bypass authentication, encryption, firmware protections, or safety controls.
 - No patient or production healthcare data belongs in this repository.
 - No claim of a full macOS Bluetooth emulator until controller-level behavior is demonstrated. CoreBluetooth may be sufficient for a GATT peripheral test double.
-- No GitHub publication without explicit human approval.
+- Working branches and pull requests may be published through the repository's orchestrated Git workflow. Pull-request merges, releases, and package publication require explicit human approval.
 
 ## Initial stack hypothesis
 
