@@ -10,4 +10,4 @@ description: Verify a Hatch Restore 2 change before it is accepted or prepared f
 3. Have `code_reviewer` check correctness and removable complexity.
 4. Have `documentation_agent` verify usage and intent against the code.
 5. List hardware behavior that remains unverified.
-6. Return pass/fail evidence. Git publishing still requires explicit human approval.
+6. Return pass/fail evidence. A passing gate permits `github` to commit, push, and open a pull request; PR merge and high-risk publication still require explicit human approval.

@@ -12,7 +12,9 @@ Build a documented, testable API for the Hatch Restore 2 without claiming unsupp
 - Prefer .NET/C# for the public API and native macOS CoreBluetooth for a peripheral emulator spike. Rust or C++ must earn their place with a measured platform need.
 - Keep BLE transport, protocol encoding, and public API separable, but do not add interfaces until a second implementation or a test boundary requires one.
 - Never use real patient data, credentials, private device identifiers, or proprietary captures in fixtures.
-- Do not commit, push, open a PR, publish, pair with hardware, or transmit BLE writes without explicit human approval for that action.
+- `project_manager` may authorize `github` to create or switch shared `codex/<milestone>` branches and commit accepted task work. `github` may push those branches and open pull requests after the required checks pass.
+- Pull-request merges, releases, package publication, force-pushes, history rewrites, remote changes, and destructive branch deletion require explicit human approval.
+- Pairing with hardware or transmitting BLE writes requires explicit human approval for that action.
 - Run the smallest relevant build/test/check. Report unavailable hardware checks honestly.
 - Review findings lead with correctness, safety, protocol evidence, and missing tests; style-only findings are noise.
 
