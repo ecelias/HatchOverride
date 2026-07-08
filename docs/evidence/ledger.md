@@ -37,12 +37,21 @@ For `observed` and `disproved` records, every capture field is required; use an 
 ### R2-EVID-001 — Does an authorized Restore 2 advertise BLE services under reproducible conditions?
 
 - **Status:** `unknown`
-- **Interpretation:** Current repository evidence does not answer this question.
-- **Confidence:** No conclusion.
-- **Confirming or falsifying experiment:** Perform an authorized, documented, repeatable observation under the approved capture procedure.
-- **Device model:** Not recorded; no source observation exists.
-- **Firmware version:** Not recorded; no source observation exists.
-- **App version:** Not recorded; no source observation exists.
+- **Interpretation:** An authorized Stage 1 experiment completed three scans, but no advertisement could be attributed to the Restore 2 without retaining a private identifier or guessing from nearby-device traffic. The result is inconclusive, so this claim remains unknown.
+- **Confidence:** High confidence in the recorded scan completion; no confidence that the result establishes Restore 2 advertisement behavior.
+- **Confirming or falsifying experiment:** After separate approval, repeat Stage 1 with device state, app state, fixed proximity, nearby-radio conditions, and a privacy-safe out-of-band attribution method recorded before execution.
+- **Sanitized source reference:** [`observations/2026-07-08-advertisement-scan.md`](observations/2026-07-08-advertisement-scan.md)
+- **Capture method:** Temporary native macOS CoreBluetooth scanner; source and binary hashes are recorded in the source reference.
+- **Timestamp:** 2026-07-08 15:37:06Z–15:42:49Z advertisement windows.
+- **Conditions:** Bluetooth `powered_on`; three planned 60-second scans with approximately 60-second spacing. Scan-start events lacked timestamps, so exact spacing is unavailable. Device state, app state, proximity, and nearby-radio conditions were not recorded.
+- **Result:** Inconclusive; the positive threshold was not met, and missing target-attribution conditions prevent a negative conclusion.
+- **Direction:** Nearby peripheral advertisements to scanner; controller scan-request transmission may also have occurred.
+- **Timing:** Per-run advertisement windows and raw-output hashes are recorded in the source reference.
+- **Repetition:** Three completed scan processes.
+- **Errors:** Empty process error logs; ambiguous attribution remains the limiting condition.
+- **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
+- **Firmware version:** Unavailable.
+- **App version:** Unavailable; the app was not used by the capture tool.
 - **Derived fixtures:** none
 - **Supported code:** none
 
