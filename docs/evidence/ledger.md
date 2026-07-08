@@ -57,25 +57,36 @@ For `observed` and `disproved` records, every capture field is required; use an 
 
 ### R2-EVID-002 — Which services, characteristics, properties, and descriptors are observable?
 
-- **Status:** `unknown`
-- **Interpretation:** Current repository evidence does not answer this question.
-- **Confidence:** No conclusion.
-- **Confirming or falsifying experiment:** Perform an authorized inventory using the approved capture procedure and record sanitized results.
-- **Device model:** Not recorded; no source observation exists.
-- **Firmware version:** Not recorded; no source observation exists.
-- **App version:** Not recorded; no source observation exists.
+- **Status:** `observed`
+- **Maturity:** `reproduced`
+- **Interpretation:** A discovery-mode Stage 2 experiment observed the same sanitized GATT service, characteristic, property, and descriptor inventory in three completed runs. Attribution to the owned Restore 2 remains inferred from the owner-confirmed discovery-mode timing and prior sanitized advertisement signature; it was not independently established by a retained private identifier. The observation does not establish command semantics, readable values, notification payloads, write behavior, authentication requirements, or implementation eligibility.
+- **Confidence:** Moderate. The normalized inventory reproduced across three completed runs; target attribution remains inferred and runs 2 and 3 overlapped in wall-clock time.
+- **Confirming or falsifying experiment:** After separate approval, repeat the inventory with discovery mode deliberately off and on, or use a privacy-preserving pairing between the advertisement candidate and GATT target that does not admit a private identifier.
+- **Sanitized source reference:** [`observations/2026-07-08-gatt-inventory.md`](observations/2026-07-08-gatt-inventory.md)
+- **Capture method:** Temporary native macOS CoreBluetooth central; source and binary hashes are recorded in the source reference.
+- **Timestamp:** 2026-07-08 20:44:47Z–20:45:14Z inventory run set.
+- **Conditions:** Owner-confirmed discovery mode before the run set. Bluetooth `powered_on`. The tool matched the PROJ-004 sanitized candidate signature, required one matching candidate, connected, discovered services, characteristics, and descriptors, then disconnected. Runs 2 and 3 overlapped and are not spaced environmental trials.
+- **Result:** Reproduced sanitized inventory: primary services `180F`, `180A`, and `02340000-5EFD-47EB-9C1A-DE53F7A2B232`; ten characteristics with observed properties and three `2902` descriptors as listed in the source reference.
+- **Direction:** Host central scan, connection initiation, GATT service discovery, characteristic discovery, descriptor discovery, and disconnect; peripheral discovery responses to host.
+- **Timing:** Run 1 completed in about 4 seconds; runs 2 and 3 completed in about 3 seconds each. Exact per-event timestamps are recorded in the source reference.
+- **Repetition:** Three completed inventory processes reported the same normalized inventory.
+- **Errors:** No connect failure, discovery failure, authentication prompt, encryption prompt, or unexpected disconnect recorded.
+- **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
+- **Firmware version:** Unavailable.
+- **App version:** Unavailable; the app was not used by the capture tool.
 - **Derived fixtures:** none
 - **Supported code:** none
 
 ### R2-EVID-003 — What authentication, encryption, sequencing, timing, or firmware constraints exist?
 
 - **Status:** `unknown`
-- **Interpretation:** Current repository evidence does not answer this question.
-- **Confidence:** No conclusion.
-- **Confirming or falsifying experiment:** Define and obtain approval for a safe experiment that isolates one constraint before collecting evidence.
-- **Device model:** Not recorded; no source observation exists.
-- **Firmware version:** Not recorded; no source observation exists.
-- **App version:** Not recorded; no source observation exists.
+- **Interpretation:** The Stage 2 inventory recorded no authentication prompt, encryption prompt, or discovery failure during connection plus GATT discovery only. That does not answer requirements for value reads, notification subscriptions, writes, sequencing, command timing, or firmware-specific behavior.
+- **Confidence:** Low for constraints beyond discovery. The only observed constraint fact is absence of prompts or errors during the approved discovery-only procedure.
+- **Confirming or falsifying experiment:** Define and obtain approval for one safe candidate-operation experiment that isolates a single read, subscription, or write behavior and records prompts, failures, sequencing, timing, and firmware/app context.
+- **Sanitized source reference:** [`observations/2026-07-08-gatt-inventory.md`](observations/2026-07-08-gatt-inventory.md)
+- **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
+- **Firmware version:** Unavailable.
+- **App version:** Unavailable; the app was not used by the capture tool.
 - **Derived fixtures:** none
 - **Supported code:** none
 
