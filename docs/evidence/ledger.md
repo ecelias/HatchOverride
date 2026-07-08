@@ -80,10 +80,10 @@ For `observed` and `disproved` records, every capture field is required; use an 
 ### R2-EVID-003 — What authentication, encryption, sequencing, timing, or firmware constraints exist?
 
 - **Status:** `unknown`
-- **Interpretation:** The Stage 2 inventory recorded no authentication prompt, encryption prompt, or discovery failure during connection plus GATT discovery only. That does not answer requirements for value reads, notification subscriptions, writes, sequencing, command timing, or firmware-specific behavior.
-- **Confidence:** Low for constraints beyond discovery. The only observed constraint fact is absence of prompts or errors during the approved discovery-only procedure.
+- **Interpretation:** The Stage 2 inventory recorded no authentication prompt, encryption prompt, or discovery failure during connection plus GATT discovery only. The Stage 4 Battery Level read recorded no authentication prompt, encryption prompt, pairing prompt, or read failure for `180F/2A19` under the recorded discovery-mode conditions. These facts do not answer requirements for other reads, notification subscriptions, writes, sequencing, command timing, firmware-specific behavior, or non-discovery conditions.
+- **Confidence:** Low for constraints beyond the exact observed discovery and Battery Level read paths. The observed constraint fact is absence of prompts or errors during those approved procedures only.
 - **Confirming or falsifying experiment:** Define and obtain approval for one safe candidate-operation experiment that isolates a single read, subscription, or write behavior and records prompts, failures, sequencing, timing, and firmware/app context.
-- **Sanitized source reference:** [`observations/2026-07-08-gatt-inventory.md`](observations/2026-07-08-gatt-inventory.md)
+- **Sanitized source reference:** [`observations/2026-07-08-gatt-inventory.md`](observations/2026-07-08-gatt-inventory.md); [`observations/2026-07-08-battery-level-read.md`](observations/2026-07-08-battery-level-read.md)
 - **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
 - **Firmware version:** Unavailable.
 - **App version:** Unavailable; the app was not used by the capture tool.
@@ -92,13 +92,23 @@ For `observed` and `disproved` records, every capture field is required; use an 
 
 ### R2-EVID-004 — Can one operation and its response be observed safely and reproduced?
 
-- **Status:** `unknown`
-- **Interpretation:** Current repository evidence does not answer this question.
-- **Confidence:** No conclusion.
-- **Confirming or falsifying experiment:** After explicit human approval, document one bounded operation/response experiment and attempt reproduction under the same conditions.
-- **Device model:** Not recorded; no source observation exists.
-- **Firmware version:** Not recorded; no source observation exists.
-- **App version:** Not recorded; no source observation exists.
+- **Status:** `observed`
+- **Maturity:** `reproduced`
+- **Interpretation:** A discovery-mode Stage 4 experiment reproduced one safe read operation: service `180F`, characteristic `2A19`, returned value length `1` and unsigned one-byte value `0` in three completed attempts. This is evidence for a bounded Battery Level read only. It does not establish Restore 2 vendor command semantics, command/notification pairing, notification behavior, write behavior, implementation eligibility, or a public API operation.
+- **Confidence:** Moderate for this exact read under the recorded conditions. The response reproduced three times, but the runs overlapped in wall-clock time, target attribution remains inferred from earlier evidence, and firmware/app versions are unavailable.
+- **Confirming or falsifying experiment:** For this exact read, repeat under spaced conditions or with discovery mode deliberately off and on. For the PRD command/notification question, define a separate subscription or vendor-operation experiment only after explicit approval for the exact transmitted action and abort criteria.
+- **Sanitized source reference:** [`observations/2026-07-08-battery-level-read.md`](observations/2026-07-08-battery-level-read.md)
+- **Capture method:** Temporary native macOS CoreBluetooth central; source and binary hashes are recorded in the source reference.
+- **Timestamp:** 2026-07-08 21:07:32Z–21:07:36Z read run set.
+- **Conditions:** Owner-confirmed discovery mode before execution. Bluetooth `powered_on`. The tool matched the PROJ-004 sanitized candidate signature, required one matching candidate, connected, discovered service `180F` and characteristic `2A19`, issued one read request per attempt, then disconnected. Runs overlapped and are not spaced environmental trials.
+- **Result:** Reproduced read response: `180F/2A19` returned value length `1` and unsigned one-byte value `0` in all three attempts.
+- **Direction:** Host central scan, connection initiation, GATT service discovery, characteristic discovery, one read request to `180F/2A19`, read response from peripheral, and disconnect.
+- **Timing:** Three attempts completed within about 3–4 seconds each; exact per-event timestamps are recorded in the source reference.
+- **Repetition:** Three completed read processes returned the same sanitized value.
+- **Errors:** No connect failure, discovery failure, read failure, authentication prompt, encryption prompt, pairing prompt, or unexpected disconnect recorded.
+- **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
+- **Firmware version:** Unavailable.
+- **App version:** Unavailable; the app was not used by the capture tool.
 - **Derived fixtures:** none
 - **Supported code:** none
 
