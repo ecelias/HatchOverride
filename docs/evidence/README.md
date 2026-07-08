@@ -4,6 +4,7 @@ This directory keeps evidence classes separate so protocol claims remain traceab
 
 - [`ledger.md`](ledger.md) records claim status, interpretation, confidence, experiments, and artifact links.
 - [`ADMISSION.md`](ADMISSION.md) defines the sanitization and provenance review required before an artifact is committed.
+- [`capture-procedure.md`](capture-procedure.md) separates physical-device observation stages, approvals, side effects, sanitization, and abort records.
 - [`observations/`](observations/README.md) contains sanitized source observations or references.
 - [`interpretations/`](interpretations/README.md) contains analysis derived from observations.
 - [`generated-fixtures/`](generated-fixtures/README.md) contains synthetic test data derived from reproduced evidence.
