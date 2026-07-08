@@ -36,19 +36,19 @@ For `observed` and `disproved` records, every capture field is required; use an 
 
 ### R2-EVID-001 — Does an authorized Restore 2 advertise BLE services under reproducible conditions?
 
-- **Status:** `unknown`
-- **Interpretation:** An authorized Stage 1 experiment completed three scans, but no advertisement could be attributed to the Restore 2 without retaining a private identifier or guessing from nearby-device traffic. The result is inconclusive, so this claim remains unknown.
-- **Confidence:** High confidence in the recorded scan completion; no confidence that the result establishes Restore 2 advertisement behavior.
-- **Confirming or falsifying experiment:** After separate approval, repeat Stage 1 with device state, app state, fixed proximity, nearby-radio conditions, and a privacy-safe out-of-band attribution method recorded before execution.
-- **Sanitized source reference:** [`observations/2026-07-08-advertisement-scan.md`](observations/2026-07-08-advertisement-scan.md)
+- **Status:** `inferred`
+- **Interpretation:** A discovery-mode Stage 1 experiment observed the same sanitized `Restore`-labeled candidate signature in all three runs. Attribution to the owned Restore 2 is inferred from the owner-confirmed discovery-mode timing and redacted local-name token; it was not independently established. An earlier experiment without recorded device conditions was inconclusive.
+- **Confidence:** Moderate. The repeated candidate observation is direct; target attribution lacks a matched discovery-mode-off comparison.
+- **Confirming or falsifying experiment:** After separate approval, compare matched Stage 1 scans with discovery mode deliberately off and on, using the same privacy-safe signature and predeclared classification rule.
+- **Sanitized source reference:** [`observations/2026-07-08-discovery-mode-advertisement-scan.md`](observations/2026-07-08-discovery-mode-advertisement-scan.md); earlier inconclusive [`observations/2026-07-08-advertisement-scan.md`](observations/2026-07-08-advertisement-scan.md)
 - **Capture method:** Temporary native macOS CoreBluetooth scanner; source and binary hashes are recorded in the source reference.
-- **Timestamp:** 2026-07-08 15:37:06Z–15:42:49Z advertisement windows.
-- **Conditions:** Bluetooth `powered_on`; three planned 60-second scans with approximately 60-second spacing. Scan-start events lacked timestamps, so exact spacing is unavailable. Device state, app state, proximity, and nearby-radio conditions were not recorded.
-- **Result:** Inconclusive; the positive threshold was not met, and missing target-attribution conditions prevent a negative conclusion.
+- **Timestamp:** 2026-07-08 15:54:24Z–15:59:08Z discovery-mode advertisement windows.
+- **Conditions:** Owner-confirmed discovery mode before run 1; persistence through later runs unknown. Bluetooth `powered_on`; three planned 60-second scans with approximately 60-second spacing. Exact scan-start spacing is unavailable.
+- **Result:** Positive candidate observation under the predeclared repetition rule; attribution to the Restore 2 remains inferred.
 - **Direction:** Nearby peripheral advertisements to scanner; controller scan-request transmission may also have occurred.
-- **Timing:** Per-run advertisement windows and raw-output hashes are recorded in the source reference.
+- **Timing:** Per-run advertisement windows and raw-output hashes are recorded in the discovery-mode source reference.
 - **Repetition:** Three completed scan processes.
-- **Errors:** Empty process error logs; ambiguous attribution remains the limiting condition.
+- **Errors:** Empty process error logs; lack of a matched discovery-mode-off comparison limits attribution.
 - **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
 - **Firmware version:** Unavailable.
 - **App version:** Unavailable; the app was not used by the capture tool.
