@@ -52,11 +52,11 @@ rg -n -i '(password|passwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token
 
 The command identifies suspicious text; it does not validate privacy, ownership, or redistribution rights.
 
-## Hardware-free empty-layout dry run
+## Historical hardware-free empty-layout dry run
 
-This dry run validates the admission boundary without scanning, pairing, connecting, reading, writing, or contacting a device:
+PROJ-002 used this dry run before evidence artifacts existed. It is retained as the historical validation record, not as a current instruction that the layout must remain empty. It validated the admission boundary without scanning, pairing, connecting, reading, writing, or contacting a device:
 
-1. Confirm that `docs/evidence/observations/` and `docs/evidence/generated-fixtures/` contain only their README files.
+1. Confirm that, at the time of the dry run, `docs/evidence/observations/` and `docs/evidence/generated-fixtures/` contained only their README files.
 2. Apply the checklist to those files and record `not applicable` for artifact-specific provenance and fixture linkage.
 3. Run the heuristic search and manually review its expected policy/template matches.
 4. Record the result using the review record above.

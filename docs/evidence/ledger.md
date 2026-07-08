@@ -36,13 +36,22 @@ For `observed` and `disproved` records, every capture field is required; use an 
 
 ### R2-EVID-001 — Does an authorized Restore 2 advertise BLE services under reproducible conditions?
 
-- **Status:** `unknown`
-- **Interpretation:** Current repository evidence does not answer this question.
-- **Confidence:** No conclusion.
-- **Confirming or falsifying experiment:** Perform an authorized, documented, repeatable observation under the approved capture procedure.
-- **Device model:** Not recorded; no source observation exists.
-- **Firmware version:** Not recorded; no source observation exists.
-- **App version:** Not recorded; no source observation exists.
+- **Status:** `inferred`
+- **Interpretation:** A discovery-mode Stage 1 experiment observed the same sanitized `Restore`-labeled candidate signature in all three runs. Attribution to the owned Restore 2 is inferred from the owner-confirmed discovery-mode timing and redacted local-name token; it was not independently established. An earlier experiment without recorded device conditions was inconclusive.
+- **Confidence:** Moderate. The repeated candidate observation is direct; target attribution lacks a matched discovery-mode-off comparison.
+- **Confirming or falsifying experiment:** After separate approval, compare matched Stage 1 scans with discovery mode deliberately off and on, using the same privacy-safe signature and predeclared classification rule.
+- **Sanitized source reference:** [`observations/2026-07-08-discovery-mode-advertisement-scan.md`](observations/2026-07-08-discovery-mode-advertisement-scan.md); earlier inconclusive [`observations/2026-07-08-advertisement-scan.md`](observations/2026-07-08-advertisement-scan.md)
+- **Capture method:** Temporary native macOS CoreBluetooth scanner; source and binary hashes are recorded in the source reference.
+- **Timestamp:** 2026-07-08 15:54:24Z–15:59:08Z discovery-mode advertisement windows.
+- **Conditions:** Owner-confirmed discovery mode before run 1; persistence through later runs unknown. Bluetooth `powered_on`; three planned 60-second scans with approximately 60-second spacing. Exact scan-start spacing is unavailable.
+- **Result:** Positive candidate observation under the predeclared repetition rule; attribution to the Restore 2 remains inferred.
+- **Direction:** Nearby peripheral advertisements to scanner; controller scan-request transmission may also have occurred.
+- **Timing:** Per-run advertisement windows and raw-output hashes are recorded in the discovery-mode source reference.
+- **Repetition:** Three completed scan processes.
+- **Errors:** Empty process error logs; lack of a matched discovery-mode-off comparison limits attribution.
+- **Device model:** Hatch Restore 2 (owner-confirmed); no private identifier recorded.
+- **Firmware version:** Unavailable.
+- **App version:** Unavailable; the app was not used by the capture tool.
 - **Derived fixtures:** none
 - **Supported code:** none
 
