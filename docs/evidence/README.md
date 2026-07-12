@@ -14,3 +14,13 @@ The only claim statuses are `observed`, `inferred`, `disproved`, and `unknown`. 
 An `observed` or `disproved` claim requires a sanitized source reference and its capture method, timestamp, conditions, result, direction, timing, repetition, and errors when applicable. Device model and relevant firmware/app versions are recorded when available; absence is explicit. Generated fixtures are never device captures.
 
 Do not add private identifiers, credentials, proprietary captures, or unrelated personal data. Apply the [evidence admission rules](ADMISSION.md) before committing an artifact. The repository contains two sanitized Stage 1 observation summaries, one sanitized Stage 2 GATT inventory summary, one sanitized Stage 4 read summary, one focused-v1 evidence-gate interpretation, and no raw captures; Restore 2 attribution remains inferred.
+
+## Zero-operation validation
+
+Run the hardware-free evidence check from the repository root:
+
+```sh
+python3 scripts/validate_zero_operation.py
+```
+
+The command reports zero supported operations and does not scan, pair, connect, read, subscribe, or write over BLE.
